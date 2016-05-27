@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 bin64/
 AMD64/
 O/
 bin32/
 IA64/
 binIA64/
+=======
+*.o
+>>>>>>> e3dc4878... Github info

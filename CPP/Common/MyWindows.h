@@ -1,3 +1,4 @@
+
 // MyWindows.h
 
 #ifndef __MY_WINDOWS_H
@@ -90,6 +91,9 @@ typedef LONG SCODE;
 #define STG_E_INVALIDFUNCTION ((HRESULT)0x80030001L)
 #define E_OUTOFMEMORY ((HRESULT)0x8007000EL)
 #define E_INVALIDARG ((HRESULT)0x80070057L)
+
+#define ERROR_NEGATIVE_SEEK -1
+#define HRESULT_FROM_WIN32(e) ((HRESULT)(e))
 
 #ifdef _MSC_VER
 #define STDMETHODCALLTYPE __stdcall
