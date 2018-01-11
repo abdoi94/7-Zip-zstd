@@ -124,6 +124,7 @@ enum Enum
   kTechMode,
   
   kShareForWrite,
+  kStopAfterOpenError,
   kCaseSensitive,
   kArcNameMode,
 
@@ -245,6 +246,7 @@ static const CSwitchForm kSwitchForms[] =
   { "slt" },
 
   { "ssw" },
+  { "sse" },
   { "ssc", NSwitchType::kMinus },
   { "sa",  NSwitchType::kChar, false, 1, k_ArcNameMode_PostCharSet },
   
@@ -533,7 +535,7 @@ static const char *ParseMapWithPaths(
     wchar_t c = p[i];
     if (c == 0)
     {
-      // MessageBoxW(0, name, L"7-Zip ZS", 0);
+      // MessageBoxW(0, name, L"7-Zip", 0);
       AddNameToCensor(censor, name, include, commonRecursedType, wildcardMatching);
       name.Empty();
     }
@@ -1299,6 +1301,8 @@ void CArcCmdLineParser::Parse2(CArcCmdLineOptions &options)
 
     if (parser[NKey::kShareForWrite].ThereIs)
       updateOptions.OpenShareForWrite = true;
+    if (parser[NKey::kStopAfterOpenError].ThereIs)
+      updateOptions.StopAfterOpenError = true;
 
     updateOptions.PathMode = censorPathMode;
 

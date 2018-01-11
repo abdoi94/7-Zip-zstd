@@ -4,6 +4,8 @@ LIBS = $(LIBS) oleaut32.lib ole32.lib
 CFLAGS = $(CFLAGS) -DUNICODE -D_UNICODE
 !ENDIF
 
+# CFLAGS = $(CFLAGS) -FAsc -Fa$O/Asm/
+
 !IFNDEF O
 !IFDEF CPU
 O=$(CPU)
@@ -13,11 +15,11 @@ O=O
 !ENDIF
 
 !IF "$(CPU)" == "AMD64"
-MY_ML = ml64 -Dx64
+MY_ML = ml64 -Dx64 -WX
 !ELSEIF "$(CPU)" == "ARM"
-MY_ML = armasm
+MY_ML = armasm -WX
 !ELSE
-MY_ML = ml
+MY_ML = ml -WX
 !ENDIF
 
 
@@ -28,11 +30,11 @@ LFLAGS = $(LFLAGS) /ENTRY:mainACRTStartup
 !ENDIF
 !ELSE
 !IFNDEF NEW_COMPILER
-LFLAGS = $(LFLAGS)
+LFLAGS = $(LFLAGS) -OPT:NOWIN98
 !ENDIF
-# !IF "$(CPU)" != "ARM"
+!IF "$(CPU)" != "ARM" && "$(CPU)" != "ARM64"
 CFLAGS = $(CFLAGS) -Gr
-# !ENDIF
+!ENDIF
 LIBS = $(LIBS) user32.lib advapi32.lib shell32.lib
 !ENDIF
 
@@ -42,7 +44,7 @@ COMPL_ASM = $(MY_ML) $** $O/$(*B).obj
 COMPL_ASM = $(MY_ML) -c -Fo$O/ $**
 !ENDIF
 
-CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -W4 -WX -EHsc -Gy -GR- -GF -GL
+CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -W4 -WX -EHsc -Gy -GR- -GF
 
 !IFDEF MY_STATIC_LINK
 !IFNDEF MY_SINGLE_THREAD
@@ -74,15 +76,15 @@ CFLAGS_O2 = $(CFLAGS) -O2
 LFLAGS = $(LFLAGS) -nologo -OPT:REF -OPT:ICF
 
 !IFNDEF UNDER_CE
-LFLAGS = $(LFLAGS) /LTCG /LARGEADDRESSAWARE
+LFLAGS = $(LFLAGS) /LARGEADDRESSAWARE
 !ENDIF
 
 !IFDEF DEF_FILE
 LFLAGS = $(LFLAGS) -DLL -DEF:$(DEF_FILE)
 !ELSE
-# !IF "$(CPU)" != "ARM"
+!IF "$(CPU)" != "ARM" && "$(CPU)" != "ARM64"
 LFLAGS = $(LFLAGS) /FIXED
-# !ENDIF
+!ENDIF
 # /BASE:0x400000
 !ENDIF
 
