@@ -1,3 +1,4 @@
+
 // OpenArchive.cpp
 
 #include "StdAfx.h"
@@ -857,7 +858,7 @@ HRESULT CArc::GetItem(UInt32 index, CReadArcItem &item) const
 
   if (item.WriteToAltStreamIfColon || needFindAltStream)
   {
-    /* Good handler must support GetRawProps::GetParent for alt streams./
+    /* Good handler must support GetRawProps::GetParent for alt streams.
        So the following code currently is not used */
     int colon = FindAltStreamColon_in_Path(item.Path);
     if (colon >= 0)
@@ -1067,7 +1068,6 @@ static const char * const k_Formats_with_simple_signuature[] =
   , "rar"
   , "bzip2"
   , "gzip"
-  , "lzip"
   , "cab"
   , "wim"
   , "rpm"

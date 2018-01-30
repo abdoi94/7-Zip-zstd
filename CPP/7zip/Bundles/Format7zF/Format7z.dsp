@@ -1,3 +1,4 @@
+
 # Microsoft Developer Studio Project File - Name="7z" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
@@ -958,6 +959,24 @@ SOURCE=..\..\Compress\QuantumDecoder.h
 # Begin Source File
 
 SOURCE=..\..\Compress\HuffmanDecoder.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Compress\LzfseDecoder.cpp
+
+!IF  "$(CFG)" == "7z - Win32 Release"
+
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "7z - Win32 Debug"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Compress\LzfseDecoder.h
 # End Source File
 # Begin Source File
 
