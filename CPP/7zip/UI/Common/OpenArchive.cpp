@@ -993,7 +993,7 @@ static void MakeCheckOrder(CCodecs *codecs,
     int index = orderIndices[i];
     if (index < 0)
       continue;
-    const CArcInfoEx &ai = codecs->Formats[index];
+    const CArcInfoEx &ai = codecs->Formats[(unsigned)index];
     if (ai.SignatureOffset != 0)
     {
       orderIndices2.Add(index);
@@ -2296,7 +2296,7 @@ HRESULT CArc::OpenStream2(const COpenOptions &op)
       int index = orderIndices[i];
       if (index < 0)
         continue;
-      const CArcInfoEx &ai = op.codecs->Formats[index];
+      const CArcInfoEx &ai = op.codecs->Formats[(unsigned)index];
       bool isDifficult = false;
       // if (ai.Version < 0x91F) // we don't use parser with old DLL (before 9.31)
       if (!ai.NewInterface)
@@ -2328,7 +2328,7 @@ HRESULT CArc::OpenStream2(const COpenOptions &op)
       if (isDifficult)
       {
         difficultFormats.Add(index);
-        difficultBools[index] = true;
+        difficultBools[(unsigned)index] = true;
       }
     }
     

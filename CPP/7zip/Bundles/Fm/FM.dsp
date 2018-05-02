@@ -2804,6 +2804,14 @@ SOURCE=..\..\UI\FileManager\DialogSize.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\UI\FileManager\EditDialog.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\UI\FileManager\EditDialog.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\UI\FileManager\LinkDialog.cpp
 # End Source File
 # Begin Source File
@@ -3692,14 +3700,6 @@ SOURCE=..\..\..\Common\Wildcard.h
 # Begin Group "UI Common"
 
 # PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\UI\Common\ArchiveCommandLine.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\UI\Common\ArchiveCommandLine.h
-# End Source File
 # Begin Source File
 
 SOURCE=..\..\UI\Common\ArchiveExtractCallback.cpp

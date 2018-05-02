@@ -1,5 +1,3 @@
-
-=======
 // Archive/ZipItem.h
 
 #ifndef __ARCHIVE_ZIP_ITEM_H

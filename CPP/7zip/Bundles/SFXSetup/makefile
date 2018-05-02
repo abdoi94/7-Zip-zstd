@@ -110,6 +110,8 @@ C_OBJS = \
 !include "../../7zip.mak"
 =======
 PROG = 7zS.sfx
+MY_FIXED = 1
+
 CFLAGS = $(CFLAGS) \
   -DNO_REGISTRY \
   -DEXTRACT_ONLY \

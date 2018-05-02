@@ -6043,7 +6043,8 @@ static void SysInfo_To_String(AString &s, const SYSTEM_INFO &si)
   PrintHex(s, si.wProcessorLevel);
   s += ".";
   PrintHex(s, si.wProcessorRevision);
-  if (si.dwActiveProcessorMask + 1 != ((UInt64)1 << si.dwNumberOfProcessors))
+  if ((UInt64)si.dwActiveProcessorMask + 1 != ((UInt64)1 << si.dwNumberOfProcessors))
+  if ((UInt64)si.dwActiveProcessorMask + 1 != 0 || si.dwNumberOfProcessors != sizeof(UInt64) * 8)
   {
     s += " act:";
     PrintHex(s, si.dwActiveProcessorMask);
@@ -6127,13 +6128,15 @@ void GetCpuName(AString &s)
       AString s2;
       x86cpuid_to_String(cpuid, s2);
       s += s2;
-      return;
     }
+    else
+    {
     #ifdef MY_CPU_AMD64
     s += "x64";
     #else
     s += "x86";
     #endif
+    }
   }
   #else
   
@@ -6144,6 +6147,9 @@ void GetCpuName(AString &s)
     #endif
 
   #endif
+
+  if (g_LargePagesMode)
+    s += " (LP)";
 }
 
 
@@ -6164,6 +6170,27 @@ void GetCpuFeatures(AString &s)
   }
   #endif
 }
+
+
+#ifdef _WIN32
+#ifndef UNDER_CE
+
+typedef void (WINAPI * Func_RtlGetVersion) (OSVERSIONINFOEXW *);
+
+static BOOL My_RtlGetVersion(OSVERSIONINFOEXW *vi)
+{
+  HMODULE ntdll = ::GetModuleHandleW(L"ntdll.dll");
+  if (!ntdll)
+    return FALSE;
+  Func_RtlGetVersion func = (Func_RtlGetVersion)GetProcAddress(ntdll, "RtlGetVersion");
+  if (!func)
+    return FALSE;
+  func(vi);
+  return TRUE;
+}
+
+#endif
+#endif
 
 
 HRESULT Bench(
@@ -6300,6 +6327,30 @@ HRESULT Bench(
 
   if (printCallback)
   {
+    #ifdef _WIN32
+    #ifndef UNDER_CE
+    {
+      AString s;
+      // OSVERSIONINFO vi;
+      OSVERSIONINFOEXW vi;
+      vi.dwOSVersionInfoSize = sizeof(vi);
+      // if (::GetVersionEx(&vi))
+      if (My_RtlGetVersion(&vi))
+      {
+        s += "Windows";
+        if (vi.dwPlatformId != VER_PLATFORM_WIN32_NT)
+          s.Add_UInt32(vi.dwPlatformId);
+        s += " "; s.Add_UInt32(vi.dwMajorVersion);
+        s += "."; s.Add_UInt32(vi.dwMinorVersion);
+        s += " "; s.Add_UInt32(vi.dwBuildNumber);
+        // s += " "; s += GetAnsiString(vi.szCSDVersion);
+      }
+      printCallback->Print(s);
+      printCallback->NewLine();
+    }
+    #endif
+    #endif
+
     {
       AString s1, s2;
       GetSysInfo(s1, s2);

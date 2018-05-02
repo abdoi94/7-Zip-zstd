@@ -167,6 +167,8 @@ ZSTDMT_OBJS = \
 !include "../../7zip.mak"
 =======
 PROG = 7z.sfx
+MY_FIXED = 1
+
 CFLAGS = $(CFLAGS) \
   -DNO_REGISTRY \
   -DEXTRACT_ONLY \

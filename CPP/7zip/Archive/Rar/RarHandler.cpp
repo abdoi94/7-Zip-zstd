@@ -2548,7 +2548,9 @@ static const Byte kProps[] =
   kpidCRC,
   kpidHostOS,
   kpidMethod,
-  kpidUnpackVer
+  kpidUnpackVer,
+
+  kpidVolumeIndex
 };
 
 static const Byte kArcProps[] =
@@ -2766,6 +2768,12 @@ STDMETHODIMP CHandler::GetProperty(UInt32 index, PROPID propID, PROPVARIANT *val
     case kpidCommented: prop = item.IsCommented(); break;
     case kpidSplitBefore: prop = item.IsSplitBefore(); break;
     case kpidSplitAfter: prop = _items[refItem.ItemIndex + refItem.NumItems - 1].IsSplitAfter(); break;
+    
+    case kpidVolumeIndex:
+      if (_arcInfo.Is_VolNumber_Defined())
+        prop = (UInt32)(_arcInfo.VolNumber + refItem.VolumeIndex);
+      break;
+
     case kpidCRC:
     {
       prop = ((lastItem.IsSplitAfter()) ? item.FileCRC : lastItem.FileCRC);

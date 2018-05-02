@@ -4141,18 +4141,6 @@ SOURCE=..\..\Compress\ShrinkDecoder.cpp
 SOURCE=..\..\Compress\ShrinkDecoder.h
 # End Source File
 # End Group
-# Begin Group "Z"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\Compress\ZDecoder.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Compress\ZDecoder.h
-# End Source File
-# End Group
 # Begin Group "BWT"
 
 # PROP Default_Filter ""
@@ -4676,10 +4664,6 @@ SOURCE=..\..\Archive\SplitHandler.cpp
 # Begin Source File
 
 SOURCE=..\..\Archive\XzHandler.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Archive\ZHandler.cpp
 # End Source File
 # End Group
 # Begin Group "UI Common"

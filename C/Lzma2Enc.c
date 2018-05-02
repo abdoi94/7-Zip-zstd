@@ -801,7 +801,7 @@ SRes Lzma2Enc_Encode2(CLzma2EncHandle pp,
 }
 =======
 /* Lzma2Enc.c -- LZMA2 Encoder
-2018-02-08 : Igor Pavlov : Public domain */
+2018-04-27 : Igor Pavlov : Public domain */
 
 #include "Precomp.h"
 
@@ -1171,7 +1171,9 @@ typedef struct
   
   ISeqOutStream *outStream;
   Byte *outBuf;
-  size_t outBufSize;
+  size_t outBuf_Rem;   /* remainder in outBuf */
+
+  size_t outBufSize;   /* size of allocated outBufs[i] */
   size_t outBufsDataSizes[MTCODER__BLOCKS_MAX];
   Bool mtCoder_WasConstructed;
   CMtCoder mtCoder;
@@ -1501,10 +1503,10 @@ static SRes Lzma2Enc_MtCallback_Write(void *pp, unsigned outBufIndex)
   if (me->outStream)
     return ISeqOutStream_Write(me->outStream, data, size) == size ? SZ_OK : SZ_ERROR_WRITE;
   
-  if (size > me->outBufSize)
+  if (size > me->outBuf_Rem)
     return SZ_ERROR_OUTPUT_EOF;
   memcpy(me->outBuf, data, size);
-  me->outBufSize -= size;
+  me->outBuf_Rem -= size;
   me->outBuf += size;
   return SZ_OK;
 }
@@ -1551,11 +1553,11 @@ SRes Lzma2Enc_Encode2(CLzma2EncHandle pp,
 
     p->outStream = outStream;
     p->outBuf = NULL;
-    p->outBufSize = 0;
+    p->outBuf_Rem = 0;
     if (!outStream)
     {
       p->outBuf = outBuf;
-      p->outBufSize = *outBufSize;
+      p->outBuf_Rem = *outBufSize;
       *outBufSize = 0;
     }
 

@@ -163,6 +163,7 @@ struct CVols
   
   bool NeedSeek;
 
+  bool DisableVolsSearch;
   bool StartIsExe;  // is .exe
   bool StartIsZ;    // is .zip or .zNN
   bool StartIsZip;  // is .zip
@@ -202,6 +203,7 @@ struct CVols
     StreamIndex = -1;
     NeedSeek = false;
 
+    DisableVolsSearch = false;
     StartIsExe = false;
     StartIsZ = false;
     StartIsZip = false;
