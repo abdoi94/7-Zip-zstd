@@ -1,7 +1,7 @@
 #define MY_VER_MAJOR 18
 #define MY_VER_MINOR 05
 #define MY_VER_BUILD 0
-#define MY_VERSION_NUMBERS "18.05"
+#define MY_VERSION_NUMBERS "18.05 XDA"
 #define MY_VERSION MY_VERSION_NUMBERS
 
 #ifdef MY_CPU_NAME
@@ -13,7 +13,7 @@
 #define MY_DATE "2018-04-30"
 #undef MY_COPYRIGHT
 #undef MY_VERSION_COPYRIGHT_DATE
-#define MY_AUTHOR_NAME "Igor Pavlov, Abdulwahab Isam (AL_IRAQI)"
+#define MY_AUTHOR_NAME "Igor Pavlov, Tino Reichardt, Abdulwahab Isam (AL_IRAQI)"
 #define MY_COPYRIGHT_PD "Igor Pavlov : Public domain"
 #define MY_COPYRIGHT_CR "Copyright (c) 1999-2018 Igor Pavlov"
 

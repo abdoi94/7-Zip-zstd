@@ -3,7 +3,7 @@
 
 !define VERSION_MAJOR 18
 !define VERSION_MINOR 05
-!define VERSION_POSTFIX_FULL ""
+!define VERSION_POSTFIX_FULL " ZS"
 !ifdef WIN64
 !ifdef IA64
 !define VERSION_SYS_POSTFIX_FULL " for Windows IA-64"

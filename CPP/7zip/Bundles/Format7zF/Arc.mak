@@ -71,6 +71,10 @@ AR_OBJS = \
   $O\HandlerCont.obj \
   $O\HfsHandler.obj \
   $O\IhexHandler.obj \
+  $O\LzHandler.obj \
+  $O\Lz4Handler.obj \
+  $O\Lz5Handler.obj \
+  $O\LizardHandler.obj \
   $O\LzhHandler.obj \
   $O\LzmaHandler.obj \
   $O\MachoHandler.obj \
@@ -92,6 +96,7 @@ AR_OBJS = \
   $O\XarHandler.obj \
   $O\XzHandler.obj \
   $O\ZHandler.obj \
+  $O\ZstdHandler.obj \
 
 AR_COMMON_OBJS = \
   $O\CoderMixer2.obj \
@@ -288,8 +293,4 @@ C_OBJS = \
 !include "../../Aes.mak"
 !include "../../Crc.mak"
 !include "../../Crc64.mak"
-<<<<<<< HEAD
->>>>>>> 866a06f5... 18.01
-=======
 !include "../../LzmaDec.mak"
->>>>>>> f19b649c... 18.03

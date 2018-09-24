@@ -1,4 +1,3 @@
-
 /* XzDec.c -- Xz Decode
 2018-04-24 : Igor Pavlov : Public domain */
 

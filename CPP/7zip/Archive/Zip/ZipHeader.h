@@ -1,4 +1,3 @@
-
 // ZipHeader.h
 
 #ifndef __ARCHIVE_ZIP_HEADER_H

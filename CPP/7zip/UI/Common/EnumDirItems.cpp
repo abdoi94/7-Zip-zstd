@@ -925,13 +925,8 @@ void CDirItems::FillFixedReparse()
   }
 }
 
-<<<<<<< HEAD
+
 #endif
-=======
-#endif
-
-
-
 static const char * const kCannotFindArchive = "Cannot find archive";
 
 HRESULT EnumerateDirItemsAndSort(
@@ -1087,4 +1082,3 @@ CMessagePathException::CMessagePathException(const char *a, const wchar_t *u)
     (*this) += u;
   }
 }
->>>>>>> 18dc2b41... 18.05
